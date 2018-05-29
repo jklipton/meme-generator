@@ -12,7 +12,8 @@ module.exports = {
         contentBase: './dist'
     },
     plugins: [
-        new CleanWebpackPlugin(`${path}/bundle.*.js`), 
+        new CleanWebpackPlugin(`${path}/bundle.*.js`),
+        new HtmlWebpackPlugin()
     ],
     module: {
         rules: [

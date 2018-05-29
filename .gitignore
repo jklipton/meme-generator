@@ -1,0 +1,31 @@
+# Build and Release Folders
+bin/
+bin-debug/
+bin-release/
+node_modules/
+/node_modules
+[Oo]bj/ # FlashDevelop obj
+[Bb]in/ # FlashDevelop bin
+# The files and folders listed here will NOT be tracked by git
+guide/
+
+
+# Logs
+logs
+*.log
+
+# Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+node_modules
+# Other files and folders
+.settings/s
+
+# Executables
+*.swf
+*.air
+*.ipa
+*.apk
+
+# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
+# should NOT be excluded as they contain compiler settings and other important
+# information for Eclipse / Flash Builder.

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx webpack"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,21 @@
   "bugs": {
     "url": "https://github.com/jklipton/meme-generator/issues"
   },
-  "homepage": "https://github.com/jklipton/meme-generator#readme"
+  "homepage": "https://github.com/jklipton/meme-generator#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-react": "^7.8.2",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.10.1",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4"
+  }
 }

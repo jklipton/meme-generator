@@ -11,6 +11,9 @@ module.exports = {
     devServer: {
         contentBase: './dist'
     },
+    plugins: [
+        new CleanWebpackPlugin(`${path}/bundle.*.js`), 
+    ],
     module: {
         rules: [
           {

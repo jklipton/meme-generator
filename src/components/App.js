@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import dom2image from 'dom-to-image';
+import fileSaver from 'file-saver';
 
 export default class App extends Component {
 
@@ -11,11 +13,12 @@ export default class App extends Component {
 
     this.handleUpload = this.handleUpload.bind(this);
     this.handleBackground = this.handleBackground.bind(this);
+    this.handleExport = this.handleExport.bind(this);
 
   }
 
   handleImageSrc({ target }) {
-    this.setState({ image: target.value });
+    this.setState({ background: target.value });
   }
 
   handleUpload({ target }) {
@@ -26,7 +29,7 @@ export default class App extends Component {
     const temp = document.querySelector('#meme-text');
     temp.parentNode.removeChild(temp);
     reader.onload = () => {
-      this.setState({ image: reader.result });
+      this.setState({ background: reader.result });
     };
   }
 
@@ -40,6 +43,12 @@ export default class App extends Component {
     });
   }
 
+  handleExport() {
+    dom2image.toBlob(this.section).then(blob => {
+      fileSaver.saveAs(blob, 'meme.png');
+    });
+  }
+
   render() {
     
     const { text, background } = this.state;
@@ -47,7 +56,7 @@ export default class App extends Component {
       <main>
         <section id="intro">
           <h1> Meme Generator </h1>
-          <h4>You want to make a meme?  Add your picture and add your text below.  When you're ready, click the 'Download' button to save your creation.</h4>
+          <h4>You want to make a meme?  Add your picture and add your text below.  When you're ready, click the 'Save' button to save your creation.</h4>
         </section>
         <section id="form">
           <div className="form-group">
@@ -70,9 +79,12 @@ export default class App extends Component {
             </label>
           </div>
         </section>
-        <section id="meme" style={{backgroundImage: background ? `url(${background})` : null}}>
+        <section id="meme" ref={node => this.section = node } style={{ backgroundImage: `${background}` ? `url(${background})` : null }}>
           <div id="meme-text">Your meme will appear here!</div>
-          <h5>{text}</h5>
+          <h5>{ text }</h5>
+        </section>
+        <section id="submit">
+          <button onClick={this.handleExport}>Save!</button>
         </section>
       </main>
     );

@@ -28,20 +28,15 @@ h4 {
     letter-spacing: .05em;
 }
 
-h5 {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: white;
-    font-size: 3em;
-}
-
 .form-group {
     flex: 0 0 auto;
-    width: 30%;
+    width: 50%;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     text-transform: uppercase;
     color: #FFFFFF;
     font-weight: bolder;
+    padding-top: 2em;
 }
 
 label {
@@ -51,6 +46,7 @@ label {
 label > input {
     display: block;
     margin: auto;
+    color: white;
 }
 
 input[type=text] {
@@ -104,6 +100,7 @@ input[type=text]:focus {
     margin: 5vw auto;
     width: calc(100% - 20vw);
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
     align-content: center;
@@ -112,27 +109,50 @@ input[type=text]:focus {
 
 #meme {
     margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
     font-weight: bold;
     text-align: center;
     border: 1px solid black;
-    background-size: contain 100%;
-    background-repeat: no-repeat;
     border-radius: 25px;
     width: calc(100% - 20vw);
     min-width: 400px;
     min-height: 400px;
     padding: 2vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
 }
 
-#meme img{
+img {
     width: 100%;
+    min-width: 400px;
+    border: 1px solid black;
+    border-radius: 25px;
+    visibility: hidden;
 }
 
-#meme-text {
+#intro-text {
     padding: 10vw 0px;
+}
+
+#header-text, #footer-text {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: white;
+    font-size: 3em;
+    position: absolute;
+}
+
+#header-text {
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#footer-text {
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #submit {

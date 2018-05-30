@@ -46,9 +46,6 @@ module.exports = {
           loader: 'url-loader',
           options: { limit: 5000 },
         },
-      }, {
-        test: /\.(woff|woff2|eot|ttf)(\?[a-z0-9=.]+)?$/, 
-        loader: 'url-loader?limit=100000'
       }
     ]
   }

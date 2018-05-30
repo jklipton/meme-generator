@@ -7,18 +7,34 @@ export default class App extends Component {
   constructor() {
     super();
 
-    this.state = { 
-
+    this.state = {
+      fonts: ['Impact', 'Arial', 'Caveat'],
+      selectedFont: 'Impact',
+      image: null,
+      fontColor: '#ffffff'
     };
 
+    this.handleImageSrc = this.handleImageSrc.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
-    this.handleBackground = this.handleBackground.bind(this);
     this.handleExport = this.handleExport.bind(this);
+    this.handleHeader = this.handleHeader.bind(this);
+    this.handleFooter = this.handleFooter.bind(this);
+    this.handleColorChange = this.handleColorChange.bind(this);
 
   }
 
+  handleMemeBox() {
+    const temp = document.querySelector('#intro-text');
+    temp.parentNode.removeChild(temp);
+
+    const memeBox = document.querySelector('#meme');
+    memeBox.setAttribute('style', 'border: none');
+    memeBox.lastChild.setAttribute('style', 'visibility: visible');
+  }
+
   handleImageSrc({ target }) {
-    this.setState({ background: target.value });
+    this.setState({ image: target.value });
+    this.handleMemeBox();
   }
 
   handleUpload({ target }) {
@@ -26,21 +42,31 @@ export default class App extends Component {
 
     reader.readAsDataURL(target.files[0]);
 
-    const temp = document.querySelector('#meme-text');
-    temp.parentNode.removeChild(temp);
     reader.onload = () => {
-      this.setState({ background: reader.result });
+      this.setState({ image: reader.result });
     };
+
+    this.handleMemeBox();
   }
 
-  handleText({ target }) {
-    this.setState({ text: target.value });
+  handleHeader({ target }) {
+    this.setState({ header: target.value });
   }
 
-  handleBackground({ target }) {
-    this.setState({
-      background: target.value
+  handleFooter({ target }) {
+    this.setState({ footer: target.value });
+  }
+
+  handleFontChange({ target }) {
+    this.setState({ selectedFont: target.value });
+    const memeText = document.querySelectorAll('.meme-text');
+    memeText.forEach((node) => {
+      node.setAttribute('style', `font-family:${target.value}`);
     });
+  }
+
+  handleColorChange({ target }) {
+    this.setState({ fontColor: target.value });
   }
 
   handleExport() {
@@ -51,7 +77,8 @@ export default class App extends Component {
 
   render() {
     
-    const { text, background } = this.state;
+    const { header, footer, image, selectedFont, fonts, fontColor } = this.state;
+
     return (
       <main>
         <section id="intro">
@@ -74,14 +101,33 @@ export default class App extends Component {
           </div>
           <div className="form-group">
             <label>
-              Meme text:
-              <input type="text" onChange={event => this.handleText(event)}/>
+              Header text:
+              <input type="text" onChange={event => this.handleHeader(event)}/>
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              Footer text:
+              <input type="text" onChange={event => this.handleFooter(event)}/>
+            </label>
+          </div>
+          <div className="form-group">
+            <select value={ selectedFont } onChange={event => this.handleFontChange(event)}>
+              { fonts.map(font => <option key={font}>{font}</option>)}
+            </select>
+          </div>
+          <div className="form-group">
+            <label>
+              Font Color:
+              <input type="color" value={fontColor} onChange={event => this.handleColorChange(event)}/>
             </label>
           </div>
         </section>
-        <section id="meme" ref={node => this.section = node } style={{ backgroundImage: `${background}` ? `url(${background})` : null }}>
-          <div id="meme-text">Your meme will appear here!</div>
-          <h5>{ text }</h5>
+        <section id="meme" ref={node => this.section = node }>
+          <div id="intro-text">Your meme will appear here!</div>
+          <div id="header-text" className="meme-text" style={{ color: fontColor }}>{ header }</div>
+          <div id="footer-text" className="meme-text" style={{ color: fontColor }}>{ footer }</div>
+          <img src={image}/>
         </section>
         <section id="submit">
           <button onClick={this.handleExport}>Save!</button>

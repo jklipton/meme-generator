@@ -89,9 +89,8 @@ input[type=text]:focus {
 }
 
 #styled-select{
-    margin-left: 1.6em;
-    display: inline;
-    padding: 15px;
+    padding: 5px;
+    margin-top: 5px;
     border-radius: 5px;
     overflow: hidden;
     background: rgb(48, 147, 160);
@@ -119,16 +118,11 @@ input[type=text]:focus {
     line-height: 1.2em;
 }
 
-#color-select, input[type=color] {
-    display: inline;
-}
-
 input[type=color] {
     border: 0;
     background: rgb(48, 147, 160);
     border-radius: 5px;
     padding: 10px;
-    margin-left: 1.6em;
 }
 
 #intro {

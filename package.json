@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx webpack",
-    "start": "npx webpack-dev-server"
+    "start": "npx webpack-dev-server --hot"
   },
   "repository": {
     "type": "git",

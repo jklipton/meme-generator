@@ -10,16 +10,16 @@ export default class App extends Component {
 
     this.state = {
       fonts: {
-        'Impact' : `Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;`,
-        'Arial' : `Arial, Helvetica, sans-serif;`,
-        'Caveat' : `Caveat', cursive;`,
-        'Roboto' : `'Roboto', sans-serif;`,
-        'IM Fell French Canon SC' : `'IM Fell French Canon SC', serif;`,
-        'Bangers' : `'Bangers', cursive;`,
-        'VT323' : `'VT323', monospace;`
+        'Impact' : ['Impact', 'Arial Narrow Bold', 'sans-serif'],
+        'Arial' : ['Arial', 'Helvetica', 'sans-serif'],
+        'Caveat' : ['Caveat', 'cursive'],
+        'Roboto' : ['Roboto', 'sans-serif'],
+        'IM Fell Great Primer' : ['IM Fell Great Primer', 'serif'],
+        'Bangers' : ['Bangers', 'cursive'],
+        'Source Sans Pro' : ['Source Sans Pro', 'sans-serif']
       },
       selectedFontKey: 'Impact',
-      selectedFontData: "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;",
+      selectedFontData: ['Impact', 'Arial Narrow Bold', 'sans-serif'],
       image: null,
       fontColor: '#ffffff'
     };
@@ -67,24 +67,23 @@ export default class App extends Component {
     this.setState({ footer: target.value });
   }
 
-  fontLoader({ font }) {
-    console.log(`font=${font}`);
+  fontLoader(fontKey) {
+    if(fontKey === 'Impact' || fontKey === 'Arial') return; 
     WebFont.load({
       google: {
-        families: [`${font}`]
+        families: [`${fontKey}`]
       }
     });
   }
 
   handleFontChange({ target }) {
-    const fontData = this.state.fonts[`${target.value}`];
-    console.log('1',fontData);
+
     this.setState({
       selectedFontKey: target.value,
-      selectedFontData: fontData
+      selectedFontData: this.state.fonts[`${target.value}`]
     });
 
-    this.fontLoader(fontData);
+    this.fontLoader(target.value);
   }
 
   handleColorChange({ target }) {
@@ -100,6 +99,10 @@ export default class App extends Component {
   render() {
     
     const { header, footer, image, selectedFontKey, selectedFontData, fonts, fontColor } = this.state;
+    const memeStyle = {
+      color: fontColor, 
+      fontFamily: selectedFontData,
+    };
 
     return (
       <main>
@@ -152,8 +155,8 @@ export default class App extends Component {
         </section>
         <section id="meme" ref={node => this.section = node }>
           <div id="intro-text">Your meme will appear here!</div>
-          <div id="header-text" className="meme-text" style={{ color: fontColor, fontFamily: selectedFontData }}>{ header }</div>
-          <div id="footer-text" className="meme-text" style={{ color: fontColor, fontFamily: selectedFontData }}>{ footer }</div>
+          <div id="header-text" className="meme-text" style={ memeStyle }>{ header }</div>
+          <div id="footer-text" className="meme-text" style={ memeStyle }>{ footer }</div>
           <img src={image}/>
         </section>
         <section id="submit">

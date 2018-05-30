@@ -63,7 +63,7 @@ input[type=text]:focus {
 
 #upload > label {
     margin-top: 5px;
-    padding: 10px;
+    padding: 8px;
     background: rgb(48, 147, 160);
     border-radius: 5px;
 }
@@ -80,15 +80,55 @@ input[type=text]:focus {
 	overflow: hidden;
 	position: absolute;
 	z-index: -1;
-}
-
-.inputfile + label {
     font-size: 1.25em;
     font-weight: 700;
     color: white;
     background-color: black;
     display: inline-block;
     cursor: pointer; /* "hand" cursor */
+}
+
+#styled-select{
+    margin-left: 1.6em;
+    display: inline;
+    padding: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    background: rgb(48, 147, 160);
+}
+
+#styled-select select {
+    padding: 5px 8px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    text-transform: uppercase;
+    color: white;
+}
+
+#styled-select select:focus {
+    outline: none;
+}
+
+#styled-select option {
+    outline: none;
+    background: rgb(48, 147, 160);
+    border: none;
+    line-height: 1.2em;
+}
+
+#color-select, input[type=color] {
+    display: inline;
+}
+
+input[type=color] {
+    border: 0;
+    background: rgb(48, 147, 160);
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 1.6em;
 }
 
 #intro {
@@ -137,8 +177,6 @@ img {
 }
 
 #header-text, #footer-text {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: white;
     font-size: 3em;
     position: absolute;
 }

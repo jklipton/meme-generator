@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import dom2image from 'dom-to-image';
 import fileSaver from 'file-saver';
+import WebFont from 'webfontloader';
 
 export default class App extends Component {
 
@@ -8,8 +9,17 @@ export default class App extends Component {
     super();
 
     this.state = {
-      fonts: ['Impact', 'Arial', 'Caveat'],
-      selectedFont: 'Impact',
+      fonts: {
+        'Impact' : `Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;`,
+        'Arial' : `Arial, Helvetica, sans-serif;`,
+        'Caveat' : `Caveat', cursive;`,
+        'Roboto' : `'Roboto', sans-serif;`,
+        'IM Fell French Canon SC' : `'IM Fell French Canon SC', serif;`,
+        'Bangers' : `'Bangers', cursive;`,
+        'VT323' : `'VT323', monospace;`
+      },
+      selectedFontKey: 'Impact',
+      selectedFontData: "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;",
       image: null,
       fontColor: '#ffffff'
     };
@@ -57,12 +67,24 @@ export default class App extends Component {
     this.setState({ footer: target.value });
   }
 
-  handleFontChange({ target }) {
-    this.setState({ selectedFont: target.value });
-    const memeText = document.querySelectorAll('.meme-text');
-    memeText.forEach((node) => {
-      node.setAttribute('style', `font-family:${target.value}`);
+  fontLoader({ font }) {
+    console.log(`font=${font}`);
+    WebFont.load({
+      google: {
+        families: [`${font}`]
+      }
     });
+  }
+
+  handleFontChange({ target }) {
+    const fontData = this.state.fonts[`${target.value}`];
+    console.log('1',fontData);
+    this.setState({
+      selectedFontKey: target.value,
+      selectedFontData: fontData
+    });
+
+    this.fontLoader(fontData);
   }
 
   handleColorChange({ target }) {
@@ -77,7 +99,7 @@ export default class App extends Component {
 
   render() {
     
-    const { header, footer, image, selectedFont, fonts, fontColor } = this.state;
+    const { header, footer, image, selectedFontKey, selectedFontData, fonts, fontColor } = this.state;
 
     return (
       <main>
@@ -112,12 +134,17 @@ export default class App extends Component {
             </label>
           </div>
           <div className="form-group">
-            <select value={ selectedFont } onChange={event => this.handleFontChange(event)}>
-              { fonts.map(font => <option key={font}>{font}</option>)}
-            </select>
+            <label id="font-select">
+              Font:
+              <div id="styled-select">
+                <select value={ selectedFontKey } onChange={event => this.handleFontChange(event)}>
+                  { Object.keys(fonts).map(font => <option key={font}>{font}</option>)}
+                </select>
+              </div>
+            </label>
           </div>
           <div className="form-group">
-            <label>
+            <label id="color-select">
               Font Color:
               <input type="color" value={fontColor} onChange={event => this.handleColorChange(event)}/>
             </label>
@@ -125,8 +152,8 @@ export default class App extends Component {
         </section>
         <section id="meme" ref={node => this.section = node }>
           <div id="intro-text">Your meme will appear here!</div>
-          <div id="header-text" className="meme-text" style={{ color: fontColor }}>{ header }</div>
-          <div id="footer-text" className="meme-text" style={{ color: fontColor }}>{ footer }</div>
+          <div id="header-text" className="meme-text" style={{ color: fontColor, fontFamily: selectedFontData }}>{ header }</div>
+          <div id="footer-text" className="meme-text" style={{ color: fontColor, fontFamily: selectedFontData }}>{ footer }</div>
           <img src={image}/>
         </section>
         <section id="submit">

@@ -16,7 +16,7 @@ export default class App extends Component {
         'Roboto' : ['Roboto', 'sans-serif'],
         'IM Fell Great Primer' : ['IM Fell Great Primer', 'serif'],
         'Bangers' : ['Bangers', 'cursive'],
-        'Source Sans Pro' : ['Source Sans Pro', 'sans-serif']
+        'Source Sans Pro' : ['Source Sans Pro', 'sans-serif'],
       },
       selectedFontKey: 'Impact',
       selectedFontData: ['Impact', 'Arial Narrow Bold', 'sans-serif'],
@@ -108,7 +108,7 @@ export default class App extends Component {
       <main>
         <section id="intro">
           <h1> Meme Generator </h1>
-          <h4>You want to make a meme?  Add your picture and add your text below.  When you're ready, click the 'Save' button to save your creation.</h4>
+          <h4>You want to make a meme?  Add your picture and add your text below.  When you&apos;re ready, click the &apos;Save&apos; button to save your creation.</h4>
         </section>
         <section id="form">
           <div className="form-group">

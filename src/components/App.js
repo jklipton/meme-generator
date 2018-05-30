@@ -6,8 +6,10 @@ export default class App extends Component {
     super();
 
     this.state = { 
-      image: null
+      image: null,
+      text: '',
     };
+
     this.handleUpload = this.handleUpload.bind(this);
 
   }
@@ -21,33 +23,47 @@ export default class App extends Component {
 
     reader.readAsDataURL(target.files[0]);
 
+    document.querySelector('#meme-text').innerHTML = '';
     reader.onload = () => {
       this.setState({ image: reader.result });
     };
   }
 
+  handleText({ target }) {
+    this.setState({ text: target.value });
+  }
+
   render() {
     
-    const { image } = this.state;
+    const { image, text } = this.state;
     return (
       <main>
-        <div>
+        <section id="intro">
+          <h1> Meme Generator </h1>
+          <h4>You want to make a meme?  Upload your picture and add your text below.  When you're ready, click the 'Download' button to save your creation.</h4>
+        </section>
+        <section id="form">
           <label>
-              Image Src:
+              File path:
             <input onChange={event => this.handleImageSrc(event)}/>
           </label>
-        </div>
-        <div>
           <label>
-              Image:
+              Or upload:
             <input 
               type="file" 
               onChange={event => this.handleUpload(event)}
             />
           </label>
-        </div>
-        <h1>What an image!</h1>
-        <img src={image}/>
+          <label>
+              Meme text:
+            <input type="text" onChange={event => this.handleText(event)}/>
+          </label>
+        </section>
+        <section id="meme">
+          <div id="meme-text">Your meme will appear here!</div>
+          <h5>{text}</h5>
+          <img src={image}/>
+        </section>
       </main>
     );
   }

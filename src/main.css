@@ -1,13 +1,36 @@
 body {
-    font-family: sans-serif;
-    color: #111;
+    margin: 0;
+    padding: 0;
   }
-  
-  .image-container {
-    position: relative;
-  }
-  
-  .image-container * {
-    position: absolute;
-    top: 0;
-  }
+
+h1 {
+
+}
+
+h4 {
+
+}
+
+h5 {
+    
+}
+
+label {
+
+}
+
+input {
+
+}
+
+#intro {
+
+}
+
+#form {
+
+}
+
+#meme {
+
+}

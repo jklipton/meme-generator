@@ -1,0 +1,135 @@
+/* @font-face {
+    font-family: 'Impact';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./impact.ttf'); /* IE9 Compat Modes */
+    /* src: local('Impact'),
+         url('./impact.ttf') format('truetype');
+  } */
+
+@import url('https://fonts.googleapis.com/css?family=Aref+Ruqaa|Caveat:700');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Aref Ruqaa', serif;
+    font-weight: lighter;
+    background-color: #a1a1a1;
+    color: rgb(36, 36, 36);
+  }
+
+main {
+    margin: 5vw 10vw;
+    padding: 5vw;
+}
+
+h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 4.5em;
+    margin-top: 0px;
+    margin-bottom: .5em;
+}
+
+h4 {
+    font-size: 1.2em;
+    line-height: 1.3em;
+    letter-spacing: .05em;
+}
+
+h5 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.form-group {
+    flex: 0 0 auto;
+    width: 30%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-weight: bolder;
+}
+
+label {
+    display: block;
+}
+
+input[type=text] {
+    border: 0;
+    background: none;
+    border-bottom: 2px solid white;
+}
+
+input[type=text]:focus {
+    border: 0;
+    background: none;
+    border-bottom: 2px solid rgb(48, 147, 160);;
+}
+
+#upload > label {
+    margin-top: 5px;
+    padding: 10px;
+    background: rgb(48, 147, 160);
+    border-radius: 5px;
+}
+
+#upload > label:hover {
+    background: rgb(64, 180, 196);
+    cursor: pointer;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+    cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}
+
+#intro {
+    padding: 0px 3vw;
+    text-align: center;
+}
+
+#form {
+    margin: 5vw auto;
+    width: calc(100%-20vw);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+#meme {
+    margin: auto;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 25px;
+    width: calc(100% - 20vw);
+    min-width: 500px;
+    padding: 2vw;
+}
+
+#meme img{
+    width: 100%;
+}
+
+#meme-text {
+    padding: 10vw 0px;
+}

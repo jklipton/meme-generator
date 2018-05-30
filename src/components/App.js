@@ -6,11 +6,11 @@ export default class App extends Component {
     super();
 
     this.state = { 
-      image: null,
-      text: '',
+
     };
 
     this.handleUpload = this.handleUpload.bind(this);
+    this.handleBackground = this.handleBackground.bind(this);
 
   }
 
@@ -23,7 +23,8 @@ export default class App extends Component {
 
     reader.readAsDataURL(target.files[0]);
 
-    document.querySelector('#meme-text').innerHTML = '';
+    const temp = document.querySelector('#meme-text');
+    temp.parentNode.removeChild(temp);
     reader.onload = () => {
       this.setState({ image: reader.result });
     };
@@ -33,36 +34,45 @@ export default class App extends Component {
     this.setState({ text: target.value });
   }
 
+  handleBackground({ target }) {
+    this.setState({
+      background: target.value
+    });
+  }
+
   render() {
     
-    const { image, text } = this.state;
+    const { text, background } = this.state;
     return (
       <main>
         <section id="intro">
           <h1> Meme Generator </h1>
-          <h4>You want to make a meme?  Upload your picture and add your text below.  When you're ready, click the 'Download' button to save your creation.</h4>
+          <h4>You want to make a meme?  Add your picture and add your text below.  When you're ready, click the 'Download' button to save your creation.</h4>
         </section>
         <section id="form">
-          <label>
+          <div className="form-group">
+            <label>
               File path:
-            <input onChange={event => this.handleImageSrc(event)}/>
-          </label>
-          <label>
-              Or upload:
-            <input 
-              type="file" 
-              onChange={event => this.handleUpload(event)}
-            />
-          </label>
-          <label>
+              <input type="text" onChange={event => this.handleImageSrc(event)}/>
+            </label>
+          </div>
+          <div id="upload" className="form-group">
+            Or upload:
+            <label>
+              <input type="file" className="inputfile" onChange={event => this.handleUpload(event)}/>
+              Choose a file
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
               Meme text:
-            <input type="text" onChange={event => this.handleText(event)}/>
-          </label>
+              <input type="text" onChange={event => this.handleText(event)}/>
+            </label>
+          </div>
         </section>
-        <section id="meme">
+        <section id="meme" style={{backgroundImage: background ? `url(${background})` : null}}>
           <div id="meme-text">Your meme will appear here!</div>
           <h5>{text}</h5>
-          <img src={image}/>
         </section>
       </main>
     );

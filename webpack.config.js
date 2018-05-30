@@ -13,10 +13,12 @@ module.exports = {
     devServer: {
         contentBase: './dist'
     },
-    devtool: 'inline-source-map',
     plugins: [
         new CleanWebpackPlugin(`${path}/bundle.*.js`),
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({
+            title: 'Memez',
+            filename: 'dist/index.html'
+        })
     ],
     module: {
         rules: [
@@ -38,6 +40,12 @@ module.exports = {
                 loader: 'css-loader'
               }
             ]
+          },{
+            test: /\.(jpg|png|svg)$/,
+            use: {
+              loader: 'url-loader',
+              options: { limit: 5000 },
+            },
           }
         ]
       }

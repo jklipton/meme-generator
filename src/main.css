@@ -1,0 +1,13 @@
+body {
+    font-family: sans-serif;
+    color: #111;
+  }
+  
+  .image-container {
+    position: relative;
+  }
+  
+  .image-container * {
+    position: absolute;
+    top: 0;
+  }

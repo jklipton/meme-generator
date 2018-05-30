@@ -7,6 +7,7 @@ body {
     font-weight: lighter;
     background-color: #a1a1a1;
     color: rgb(36, 36, 36);
+    min-width: 700px;
   }
 
 main {
@@ -45,6 +46,11 @@ h5 {
 
 label {
     display: block;
+}
+
+label > input {
+    display: block;
+    margin: auto;
 }
 
 input[type=text] {
@@ -96,11 +102,12 @@ input[type=text]:focus {
 
 #form {
     margin: 5vw auto;
-    width: calc(100%-20vw);
+    width: calc(100% - 20vw);
     display: flex;
     justify-content: space-around;
     align-items: center;
     align-content: center;
+    text-align: center;
 }
 
 #meme {
@@ -145,4 +152,10 @@ button {
     font-size: 16px;
     text-transform: uppercase;
     border-radius: 5px;
+}
+
+@media only screen and (max-width: 1000px) {
+    main {
+        margin: 0px;
+    }
 }
